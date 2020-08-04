@@ -1,6 +1,5 @@
 #-*- coding:utf-8 -*-
 from googletrans import Translator, LANGUAGES
-from time import sleep
 
 def trans_show(lang, text):
     translate = T.translate(text ,src="auto",dest=lang).text
@@ -28,17 +27,17 @@ if __name__ == "__main__":
 
                 lang = T.detect(text) # detect lang
 
-                if(lang.lang == "en"): # input en >> th
-                    trans_show("th", text) # translate and show
-
-                elif(lang.lang == "th"): # input th >> en
-                    trans_show("en", text) # translate and show
-
-                elif "," in text: # other language input ,
+                if "," in text: # other language input ,
                     split = text.split(",")
                     text = split[1]
                     lang = split[0]
                     trans_show(lang, text) # translate and show   
+
+                elif(lang.lang == "en"): # input en >> th
+                    trans_show("th", text) # translate and show
+
+                elif(lang.lang == "th"): # input th >> en
+                    trans_show("en", text) # translate and show
 
                 if(text == "q" or text == "exit"):
                     Flag = False
