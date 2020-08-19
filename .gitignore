@@ -2,3 +2,4 @@ env/
 gui.py
 test.py
 .vscode/
+log.txt
