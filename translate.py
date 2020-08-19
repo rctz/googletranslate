@@ -2,9 +2,12 @@
 from googletrans import Translator, LANGUAGES
 
 def trans_show(lang, text):
-    translate = T.translate(text ,src="auto",dest=lang).text
-    print(">>> " + translate)
-
+    try:
+        translate = T.translate(text ,src="auto",dest=lang).text
+        print(">>> " + translate)
+    except Exception as e:
+        print("Can not translate")
+        
 if __name__ == "__main__":
         T = Translator()
         
