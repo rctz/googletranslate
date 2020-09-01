@@ -19,12 +19,14 @@ if __name__ == "__main__":
                 text = input(": ")
                 if(text == str(1)):
                     find = input("lang: ")
+                    w_LANG = T.translate(find, src="auto", dest="en").text
+                    w_LANG = w_LANG[:3].lower() # auto search language short
                     dic_lang = LANGUAGES # dic of all language
                     key_lang = list(dic_lang.keys()) # Key to list
                     value_lang = list(dic_lang.values()) # Value to list
                     for i in range(len(value_lang)):
-                        if(find in value_lang[i]): # if has lang in Value_list
-                            print(key_lang[i]) # show Key_list at that index
+                        if(w_LANG in value_lang[i]): # if has lang in Value_list
+                            print(colored(key_lang[i], "blue")) # show Key_list at that index
                             print("\n==================\n")
                             break
                     continue
