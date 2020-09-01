@@ -1,10 +1,11 @@
 #-*- coding:utf-8 -*-
 from googletrans import Translator, LANGUAGES
+from termcolor import colored
 
 def trans_show(lang, text):
     try:
         translate = T.translate(text ,src="auto",dest=lang).text
-        print(">>> " + translate)
+        print(">>> " + colored(translate, "red"))
     except Exception as e:
         print("Can not translate")
         
@@ -30,22 +31,24 @@ if __name__ == "__main__":
 
                 lang = T.detect(text) # detect lang
 
-                if "," in text: # other language input ,
-                    split = text.split(",")
-                    text = split[1]
-                    lang = split[0]
-                    trans_show(lang, text) # translate and show   
-
-                elif(lang.lang == "en"): # input en >> th
-                    trans_show("th", text) # translate and show
-
-                elif(lang.lang == "th"): # input th >> en
-                    trans_show("en", text) # translate and show
-
                 if(text == "q" or text == "exit"):
                     Flag = False
                     print("\nEnding")
                     print("===============\n")
+
+                else:
+                    if "," in text: # other language input ,
+                        split = text.split(",")
+                        text = split[1]
+                        lang = split[0]
+                        trans_show(lang, text) # translate and show   
+
+                    elif(lang.lang == "en"): # input en >> th
+                        trans_show("th", text) # translate and show
+
+                    elif(lang.lang == "th"): # input th >> en
+                        trans_show("en", text) # translate and show
+
             except Exception as error:
                 print ("Translate error: ", error)
 
