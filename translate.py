@@ -5,9 +5,12 @@ from termcolor import colored
 def trans_show(lang, text):
     try:
         translate = T.translate(text ,src="auto",dest=lang).text
-        print(">>> " + colored(translate, "red"))
+        if(translate != ""): 
+            print(">>> " + colored(translate, "blue"))         
+        else: # text error
+            print(colored("Can't translate", "red"))
     except Exception as e:
-        print("Can not translate")
+        print(colored(e, "red"))
         
 if __name__ == "__main__":
         T = Translator()
@@ -52,5 +55,5 @@ if __name__ == "__main__":
                         trans_show("en", text) # translate and show
 
             except Exception as error:
-                print ("Translate error: ", error)
+                print ("Translate error: ", colored(error, "red"))
 
