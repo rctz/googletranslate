@@ -12,3 +12,4 @@ idna==2.10
 rfc3986==1.4.0
 six==1.15.0
 sniffio==1.1.0
+termcolor==1.1.0
