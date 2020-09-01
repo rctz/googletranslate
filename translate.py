@@ -20,7 +20,9 @@ if __name__ == "__main__":
         while(Flag):
             try:
                 text = input(": ")
-                if(text == str(1)):
+                if(text == ""):
+                    continue # enter new line
+                elif(text == str(1)):
                     find = input("lang: ")
                     w_LANG = T.translate(find, src="auto", dest="en").text
                     w_LANG = w_LANG[:3].lower() # auto search language short
