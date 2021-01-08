@@ -1,10 +1,11 @@
+#!/usr/bin/python3
 #-*- coding:utf-8 -*-
-from googletrans import Translator, LANGUAGES
+from google_trans_new import google_translator, LANGUAGES
 from termcolor import colored
 
 def trans_show(lang, text):
     try:
-        translate = T.translate(text ,src="auto",dest=lang).text
+        translate = T.translate(text, lang_tgt=lang, lang_src="auto")
         if(translate != ""): 
             print(">>> " + colored(translate, "blue"))         
         else: # text error
@@ -13,7 +14,7 @@ def trans_show(lang, text):
         print(colored(e, "red"))
         
 if __name__ == "__main__":
-        T = Translator()
+        T = google_translator()
         
         Flag = True
         print("See all language code press 1")
@@ -23,8 +24,8 @@ if __name__ == "__main__":
                 if(text == ""):
                     continue # enter new line
                 elif(text == str(1)):
-                    find = input("lang: ")
-                    w_LANG = T.translate(find, src="auto", dest="en").text
+                    find = input("lang: ")    
+                    w_LANG = T.translate(find, lang_tgt="en", lang_src="auto")
                     w_LANG = w_LANG[:3].lower() # auto search language short
                     dic_lang = LANGUAGES # dic of all language
                     key_lang = list(dic_lang.keys()) # Key to list
@@ -36,7 +37,7 @@ if __name__ == "__main__":
                             break
                     continue
 
-                lang = T.detect(text) # detect lang
+                lang = T.detect(text) # detect lang #* lang in list ex ["en", "Enslish"]
 
                 if(text == "q" or text == "exit"):
                     Flag = False
@@ -50,10 +51,12 @@ if __name__ == "__main__":
                         lang = split[0]
                         trans_show(lang, text) # translate and show   
 
-                    elif(lang.lang == "en"): # input en >> th
+                    elif(lang[0] == "en"): # input en >> th
+                        print(text)
+                        print(lang)
                         trans_show("th", text) # translate and show
 
-                    elif(lang.lang == "th"): # input th >> en
+                    elif(lang[0] == "th"): # input th >> en
                         trans_show("en", text) # translate and show
 
             except Exception as error:
