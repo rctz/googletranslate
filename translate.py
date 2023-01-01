@@ -27,12 +27,9 @@ if __name__ == "__main__":
                     find = input("lang: ")    
                     w_LANG = T.translate(find, lang_tgt="en", lang_src="auto")
                     w_LANG = w_LANG[:3].lower() # auto search language short
-                    dic_lang = LANGUAGES # dic of all language
-                    key_lang = list(dic_lang.keys()) # Key to list
-                    value_lang = list(dic_lang.values()) # Value to list
-                    for i in range(len(value_lang)):
-                        if(w_LANG in value_lang[i]): # if has lang in Value_list
-                            print(colored(key_lang[i], "blue")) # show Key_list at that index
+                    for key, value in LANGUAGES.items():
+                        if w_LANG in value:
+                            print(colored(key, "blue")) # show Key_list at that index
                             print("\n==================\n")
                             break
                     continue
@@ -60,5 +57,6 @@ if __name__ == "__main__":
                         trans_show("en", text) # translate and show
 
             except Exception as error:
+                print(error)
                 print ("Translate error: ", colored(error, "red"))
 
